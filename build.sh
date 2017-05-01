@@ -1,10 +1,9 @@
 #!/bin/bash
 
-set -e
+# enter python2 virtual environment (if it works)
+virtualenv2 venv && source venv/bin/activate
 
-# enter python2 virtual environment
-virtualenv2 venv
-source venv/bin/activate
+set -e
 
 # clone depot tools
 git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git depot_tools
