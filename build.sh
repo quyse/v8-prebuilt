@@ -22,6 +22,6 @@ gn gen out.gn/release --fail-on-unused-args --args='is_debug=false v8_enable_i18
 ninja -C out.gn/release
 
 # run tests
-tools/run-tests.py --outdir out.gn/release
+tools/run-tests.py --outdir out.gn/release > tests.out 2> tests.err && true
 
 popd # v8

@@ -7,7 +7,7 @@ linux:
   script:
   - "./build.sh"
   - "mkdir linux"
-  - "cp v8/out.gn/release/obj/libv8_lib{base,platform}.a linux/"
+  - "cp v8/out.gn/release/obj/libv8_lib{base,platform}.a v8/tests.{out,err} linux/"
   artifacts:
     name: "v8-prebuilt-$CI_BUILD_ID"
     paths:
@@ -22,7 +22,7 @@ windows:
   script:
   - "./build.sh"
   - "mkdir windows"
-  - "cp v8/out.gn/release/obj/libv8_lib{base,platform}.lib windows/"
+  - "cp v8/out.gn/release/obj/libv8_lib{base,platform}.lib v8/tests.{out,err} windows/"
   artifacts:
     name: "v8-prebuilt-$CI_BUILD_ID"
     paths:
@@ -37,7 +37,7 @@ macos:
   script:
   - "./build.sh"
   - "mkdir macos"
-  - "cp v8/out.gn/release/obj/libv8_lib{base,platform}.a macos/"
+  - "cp v8/out.gn/release/obj/libv8_lib{base,platform}.a v8/tests.{out,err} macos/"
   artifacts:
     name: "v8-prebuilt-$CI_BUILD_ID"
     paths:
