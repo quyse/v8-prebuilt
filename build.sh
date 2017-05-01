@@ -15,11 +15,8 @@ gclient sync --no-history --with_tags -r v8@5.8.283.36
 # enter v8 directory
 pushd v8
 
-# download LLVMgold.so (needed for 'official build', which is most optimized)
-build/download_gold_plugin.py
-
 # configure
-gn gen out.gn/release --fail-on-unused-args --args='is_official_build=true v8_enable_i18n_support=false'
+gn gen out.gn/release --fail-on-unused-args --args='is_debug=false v8_enable_i18n_support=false'
 
 # build
 ninja -C out.gn/release
