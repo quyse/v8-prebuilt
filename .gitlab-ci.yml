@@ -2,47 +2,32 @@ stages:
 - build
 - deploy
 
-linux:
+.build_template: &build
   stage: build
   script:
   - "./build.sh"
-  - "mkdir linux"
-  - "cp v8/out.gn/release/obj/libv8_lib{base,platform}.a v8/tests.{out,err} linux/"
   artifacts:
     name: "v8-prebuilt-$CI_BUILD_ID"
     paths:
-    - linux
+    - v8-prebuilt
+    - tests.out
+    - tests.err
     expire_in: 1 week
+
+linux:
+  <<: *build
   tags:
   - linux
   - x64
 
 windows:
-  stage: build
-  script:
-  - "./build.sh"
-  - "mkdir windows"
-  - "cp v8/out.gn/release/obj/libv8_lib{base,platform}.lib v8/tests.{out,err} windows/"
-  artifacts:
-    name: "v8-prebuilt-$CI_BUILD_ID"
-    paths:
-    - windows
-    expire_in: 1 week
+  <<: *build
   tags:
   - windows
   - x64
 
 macos:
-  stage: build
-  script:
-  - "./build.sh"
-  - "mkdir macos"
-  - "cp v8/out.gn/release/obj/libv8_lib{base,platform}.a v8/tests.{out,err} macos/"
-  artifacts:
-    name: "v8-prebuilt-$CI_BUILD_ID"
-    paths:
-    - macos
-    expire_in: 1 week
+  <<: *build
   tags:
   - macos
   - x64

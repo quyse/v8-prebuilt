@@ -25,3 +25,8 @@ ninja -C out.gn/release
 tools/run-tests.py --outdir out.gn/release > tests.out 2> tests.err && true
 
 popd # v8
+
+# copy files
+mkdir -p v8-prebuilt/{include,lib}
+cp v8/include/*.h v8-prebuilt/include/
+cp v8/out.gn/release/obj/libv8_lib* v8-prebuilt/lib/
